@@ -40,7 +40,7 @@ export default {
   outline-offset: 0;
 }
 .base-input {
-  height:56px;
+  height:46px;
   padding-left: 16px;
   padding-top: 8px;
   border-width: 1px;
