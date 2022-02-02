@@ -4,8 +4,8 @@
     <div class="content-constraint">
       <div class="container__content-constraint__formOne">
         <TitleComponent title="Персональные данные" marginTop="30px"/>
-        <InputComponent width="616px" input-value="Имя" input-type="text"></InputComponent>
-        <InputComponent width="616px" input-value="Возраст" input-type="number"></InputComponent>
+        <InputComponent width="616px" inputValue="Имя" input-type="text"></InputComponent>
+        <InputComponent width="616px" input-value="Возраст" input-type="text"></InputComponent>
       </div>
     </div>
   </div>
