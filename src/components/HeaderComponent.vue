@@ -4,8 +4,8 @@
     <img src="../assets/Logo_imi_horizontal.svg" class="header__logo">
   </div>
   <div class="header__nav">
-    <div class="header__nav__text">Форма</div>
-    <div class="header__nav__text">Превью</div>
+    <router-link to="/" class="header__nav__text">Форма</router-link>
+    <router-link to="/Preview" class="header__nav__text">Превью</router-link>
   </div>
   <div class="header__third-block"></div>
 </div>
