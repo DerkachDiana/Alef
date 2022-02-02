@@ -1,9 +1,8 @@
 <template>
-  <HeaderComponent/>
   <div class="container">
     <div class="content-constraint">
       <div class="container__content-constraint__formOne">
-        <TitleComponent title="Персональные данные" marginTop="30px"/>
+        <TitleComponent title="Персональные данные" :style="{'margin-top': '30px'}"/>
         <InputComponent width="594px" inputValue="Имя" input-type="text"></InputComponent>
         <InputComponent width="594px" input-value="Возраст" input-type="text"></InputComponent>
       </div>
@@ -19,18 +18,15 @@
       </div>
     </div>
   </div>
-  <FooterComponent/>
 </template>
 <script>
-import HeaderComponent from '@/components/HeaderComponent'
-import FooterComponent from '@/components/FooterComponent'
 import TitleComponent from '@/components/TitleComponent'
 import InputComponent from '@/components/InputComponent'
 import AddButtonComponent from '@/components/AddButtonComponent'
 import SaveButton from '@/components/SaveButton'
 import ChildCard from '@/components/ChildCard'
 export default {
-  components: { ChildCard, SaveButton, AddButtonComponent, InputComponent, TitleComponent, FooterComponent, HeaderComponent }
+  components: { ChildCard, SaveButton, AddButtonComponent, InputComponent, TitleComponent }
 }
 </script>
 <style>

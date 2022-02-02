@@ -23,9 +23,6 @@ export default {
   flex-direction:row;
   align-items: center;
   height: 76px;
-  /*border-bottom: solid;*/
-  /*border-width: thin;*/
-  /*border-color: ;*/
   box-shadow: 0px 1px 0px rgba(17, 17, 17, 0.1);
 }
 .header__logo-block {

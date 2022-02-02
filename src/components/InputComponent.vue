@@ -11,7 +11,10 @@ export default {
   props: {
     width: String,
     inputValue: String,
-    inputType: String
+    inputType: {
+      type: String,
+      default: 'text'
+    }
   },
   data () {
     return {

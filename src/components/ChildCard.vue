@@ -1,8 +1,8 @@
 <template>
-  <div class="box-1">
-    <div class="box-1__title-button">
-      <div class="box-1__form">
-        <div class="box-1__form__row">
+  <div class="container">
+    <div class="container__title-button">
+      <div class="container__form">
+        <div class="container__form__row">
           <InputComponent input-type="text" input-value="Имя" width="238px"/>
           <InputComponent input-type="text" input-value="Возраст" width="238px"/>
           <DeleteButtonComponent/>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-.box-1__form__row {
+.container__form__row {
   display: flex;
   flex-direction: row;
   gap: 18px;

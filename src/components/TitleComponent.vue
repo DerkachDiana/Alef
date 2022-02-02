@@ -1,13 +1,12 @@
 <template>
-  <div class="title" :style="{'margin-top': marginTop}">{{title}}</div>
+  <div class="title">{{title}}</div>
 </template>
 
 <script>
 export default {
   name: 'TitleComponent',
   props: {
-    title: String,
-    marginTop: String
+    title: String
   }
 }
 </script>
