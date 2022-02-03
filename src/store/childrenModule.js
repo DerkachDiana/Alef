@@ -4,20 +4,33 @@ export const childrenModule = {
       childName: '',
       childAge: 0
     },
-    children: []
+    children: [],
+    childNames: [],
+    childAges: [],
+    id: 0
   }),
   getters: {
 
   },
   mutations: {
-    setChildName (state, childName) {
-      state.child.childName = childName
+    textMutation (state, newText) {
+      state.text = newText
     },
     setChildAge (state, childAge) {
-      state.child.childAge = childAge
     },
-    addChild (state) {
-      if (state.children.length < 5) state.children.push(state.child)
+    setChildName (state, i, myName) {
+      state.children[i].childName = myName
+    },
+    setChildAg (state, childAge) {
+    },
+    addChildr (state) {
+      const child = {
+        childInput: state.id,
+        childName: '',
+        childAge: 0
+      }
+      if (state.children.length < 5) state.children.push(child)
+      state.id += 1
     },
     needToDelete (state, index) {
       state.children.splice(index, 1)

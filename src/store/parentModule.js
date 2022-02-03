@@ -10,7 +10,7 @@ export const parentModule = {
   getters: {
   },
   mutations: {
-    setParentName (state, parentName) {
+    setParentName (state, parentName, index) {
       state.parent.parentName = parentName
     },
     setParentAge (state, parentAge) {

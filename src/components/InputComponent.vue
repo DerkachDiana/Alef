@@ -1,11 +1,13 @@
 <template>
   <div class="base-input">
     <div class="textAboveTheInput">{{inputValue}}</div>
-    <input :type="inputType" class="my-input-text" :style="{'width': width}" v-model="textFromInput" >
+    <input :type="inputType" class="my-input-text" :style="{'width': width}" v-model="textFromInput">
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'InputComponent',
   emits: ['getText'],
@@ -23,6 +25,8 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+    })
   },
   computed: {
   },

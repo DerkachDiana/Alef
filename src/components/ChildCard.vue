@@ -3,8 +3,8 @@
     <div class="container__title-button">
       <div class="container__form">
         <div class="container__form__row">
-          <InputComponent input-type="text" input-value="Имя" width="238px" @getText="$store.commit('setChildName')"/>
-          <InputComponent input-type="text" input-value="Возраст" width="238px" @getText="$store.commit('setChildAge')"/>
+          <InputComponent input-type="text" input-value="Имя" width="238px" @getText="changeName"/>
+          <InputComponent input-type="text" input-value="Возраст" width="238px" @getText="changeName"/>
           <DeleteButtonComponent @click="deleteChild"/>
         </div>
       </div>
@@ -15,25 +15,38 @@
 <script>
 import InputComponent from './InputComponent'
 import DeleteButtonComponent from './DeleteButtonComponent'
+import { mapMutations } from 'vuex'
 export default {
   name: 'ChildCard',
-  emits: ['deleteCard'],
+  emits: ['deleteCard', 'newName'],
+  props: {
+    index: Number
+  },
   components: { DeleteButtonComponent, InputComponent },
   methods: {
     deleteChild () {
       this.$emit('deleteCard', true)
     },
-    getChildName (childName) {
-      this.childName = childName
-    },
-    getChildAge (childAge) {
-      this.childAge = childAge
+    ...mapMutations({
+      setChildName: 'children/setChildName',
+      setChildAge: 'children/setChildAge',
+      inputText: 'children/textMutation'
+    }),
+    changeName (val) {
+      this.getName = val
     }
   },
   data () {
     return {
       childName: '',
-      childAge: 0
+      childAge: 0,
+      textFromInput: '',
+      getName: ''
+    }
+  },
+  watch: {
+    getName (newVal) {
+      this.$emit('newName', this.getName)
     }
   }
 }

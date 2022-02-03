@@ -2,7 +2,7 @@
  <div class="app">
    <HeaderComponent/>
    <router-view class="content"></router-view>
-   <FooterComponent/>
+   <FooterComponent class="footer"/>
  </div>
 </template>
 <script>
@@ -15,5 +15,8 @@ export default {
 <style>
 .content {
   min-height: 80vh;
+}
+.footer {
+  margin-top: 20px;
 }
 </style>

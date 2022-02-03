@@ -12,11 +12,11 @@
           <AddButtonComponent @click="addChild" text="Добавить ребенка"/>
         </div>
         <div class="content-constraint__childCard__childCard-SaveButton">
-          <div v-for="(child, index) in children" :key="index">
-            <ChildCard @deleteCard="needToDelete"/>
+          <div v-for="(child, index) in children" :key="index" >
+            {{index}}
+            <ChildCard @deleteCard="needToDelete" @newName="setChildName(index, index)"/>
           </div>
-          <SaveButton text="Сохранить"></SaveButton>
-          {{this.childNumber}}
+          <SaveButton text="Сохранить" @click="createFamily"></SaveButton>
         </div>
       </div>
     </div>
@@ -33,21 +33,21 @@ export default {
   components: { ChildCard, SaveButton, AddButtonComponent, InputComponent, TitleComponent },
   data () {
     return {
-      childNumber: 0,
-      children: [],
-      child: {
-        name: '',
-        age: 0
-      }
+      nName: 'ss'
     }
   },
   methods: {
     ...mapMutations({
       setParentName: 'parent/setParentName',
       setParentAge: 'parent/setParentAge',
-      addChild: 'children/addChild',
-      needToDelete: 'children/needToDelete'
-    })
+      addChild: 'children/addChildr',
+      needToDelete: 'children/needToDelete',
+      createFamily: 'preview/createFamily',
+      setChildName: 'children/setChildName'
+    }),
+    saveName (newname) {
+      this.nName = newname
+    }
   },
   computed: {
     ...mapState({
