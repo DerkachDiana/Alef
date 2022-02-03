@@ -3,8 +3,8 @@
     <div class="container__title-button">
       <div class="container__form">
         <div class="container__form__row">
-          <InputComponent input-type="text" input-value="Имя" width="238px" @getText="getChildName"/>
-          <InputComponent input-type="text" input-value="Возраст" width="238px" @getText="getChildAge"/>
+          <InputComponent input-type="text" input-value="Имя" width="238px" @getText="$store.commit('setChildName')"/>
+          <InputComponent input-type="text" input-value="Возраст" width="238px" @getText="$store.commit('setChildAge')"/>
           <DeleteButtonComponent @click="deleteChild"/>
         </div>
       </div>
