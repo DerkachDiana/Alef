@@ -1,7 +1,7 @@
 <template>
  <div class="app">
    <HeaderComponent/>
-   <router-view></router-view>
+   <router-view class="content"></router-view>
    <FooterComponent/>
  </div>
 </template>
@@ -13,5 +13,7 @@ export default {
 }
 </script>
 <style>
-
+.content {
+  min-height: 80vh;
+}
 </style>

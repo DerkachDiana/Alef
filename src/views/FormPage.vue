@@ -9,11 +9,14 @@
       <div class="content-constraint__childCard">
         <div class="content-constraint__childCard__row">
           <TitleComponent title="Дети (макс. 5)"/>
-          <AddButtonComponent text="Добавить ребенка"/>
+          <AddButtonComponent @click="addChild" text="Добавить ребенка"/>
         </div>
         <div class="content-constraint__childCard__childCard-SaveButton">
-          <ChildCard/>
+          <div v-for="child in children" :key="child">
+            <ChildCard />
+          </div>
           <SaveButton text="Сохранить"></SaveButton>
+          {{this.childNumber}}
         </div>
       </div>
     </div>
@@ -26,7 +29,25 @@ import AddButtonComponent from '@/components/AddButtonComponent'
 import SaveButton from '@/components/SaveButton'
 import ChildCard from '@/components/ChildCard'
 export default {
-  components: { ChildCard, SaveButton, AddButtonComponent, InputComponent, TitleComponent }
+  components: { ChildCard, SaveButton, AddButtonComponent, InputComponent, TitleComponent },
+  data () {
+    return {
+      childNumber: 0,
+      children: [],
+      child: {
+        id: 2,
+        name: '',
+        age: 15
+      }
+    }
+  },
+  methods: {
+    addChild () {
+      if (this.children.length < 5) this.children.push(this.child)
+    }
+  },
+  computed: {
+  }
 }
 </script>
 <style>
@@ -34,7 +55,6 @@ export default {
   display:flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 136px;
 }
 .content-constraint {
   display:flex;

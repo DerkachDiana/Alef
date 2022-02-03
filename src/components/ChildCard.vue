@@ -5,7 +5,7 @@
         <div class="container__form__row">
           <InputComponent input-type="text" input-value="Имя" width="238px"/>
           <InputComponent input-type="text" input-value="Возраст" width="238px"/>
-          <DeleteButtonComponent/>
+          <DeleteButtonComponent @click="deleteChild"/>
         </div>
       </div>
     </div>
@@ -17,7 +17,12 @@ import InputComponent from './InputComponent'
 import DeleteButtonComponent from './DeleteButtonComponent'
 export default {
   name: 'ChildCard',
-  components: { DeleteButtonComponent, InputComponent }
+  components: { DeleteButtonComponent, InputComponent },
+  methods: {
+    deleteChild () {
+
+    }
+  }
 }
 </script>
 
