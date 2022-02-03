@@ -1,13 +1,14 @@
 <template>
   <div class="base-input">
     <div class="textAboveTheInput">{{inputValue}}</div>
-    <input :type="inputType" class="my-input-text" :style="{'width': width}" >
+    <input :type="inputType" class="my-input-text" :style="{'width': width}" v-model="textFromInput" >
   </div>
 </template>
 
 <script>
 export default {
   name: 'InputComponent',
+  emits: ['getText'],
   props: {
     width: String,
     inputValue: String,
@@ -18,9 +19,17 @@ export default {
   },
   data () {
     return {
+      textFromInput: ''
     }
   },
+  methods: {
+  },
   computed: {
+  },
+  watch: {
+    textFromInput (newValue) {
+      this.$emit('getText', newValue)
+    }
   }
 }
 </script>

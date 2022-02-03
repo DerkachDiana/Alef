@@ -3,8 +3,8 @@
     <div class="content-constraint">
       <div class="container__content-constraint__formOne">
         <TitleComponent title="Персональные данные" :style="{'margin-top': '30px'}"/>
-        <InputComponent width="594px" inputValue="Имя" input-type="text"></InputComponent>
-        <InputComponent width="594px" input-value="Возраст" input-type="text"></InputComponent>
+        <InputComponent width="594px" inputValue="Имя" input-type="text" @getText="getName"></InputComponent>
+        <InputComponent width="594px" input-value="Возраст" input-type="text" @getText="getAge"></InputComponent>
       </div>
       <div class="content-constraint__childCard">
         <div class="content-constraint__childCard__row">
@@ -12,8 +12,8 @@
           <AddButtonComponent @click="addChild" text="Добавить ребенка"/>
         </div>
         <div class="content-constraint__childCard__childCard-SaveButton">
-          <div v-for="child in children" :key="child">
-            <ChildCard />
+          <div v-for="(index) in children" :key="index">
+            <ChildCard @deleteCard="needToDelete(index)"/>
           </div>
           <SaveButton text="Сохранить"></SaveButton>
           {{this.childNumber}}
@@ -35,18 +35,28 @@ export default {
       childNumber: 0,
       children: [],
       child: {
-        id: 2,
         name: '',
-        age: 15
+        age: 0
       }
     }
   },
   methods: {
     addChild () {
       if (this.children.length < 5) this.children.push(this.child)
+    },
+    needToDelete (index) {
+      this.children.splice(index, 1)
+    },
+    getName (name) {
+      this.child.name = name
+    },
+    getAge (age) {
+      this.child.age = age
     }
   },
   computed: {
+  },
+  watch: {
   }
 }
 </script>

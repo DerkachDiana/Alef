@@ -7,7 +7,9 @@
       </div>
       <div class="container__child">
         <TitleComponent title="Дети"/>
-        <ListComponent :person-name="personName" :age="age" bg-color="#F1F1F1" my-padding="10px 20px"></ListComponent>
+        <div v-for="(child, index) in children" :key="index">
+          <ListComponent :person-name="child.name" :age="child.age" bg-color="#F1F1F1" my-padding="10px 20px"/>
+        </div>
       </div>
     </div>
   </div>
