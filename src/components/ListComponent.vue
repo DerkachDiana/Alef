@@ -7,7 +7,7 @@ export default {
   name: 'ListComponent',
   props: {
     personName: String,
-    age: Number,
+    age: String,
     bgColor: String,
     myPadding: {
       type: String,
@@ -21,10 +21,11 @@ export default {
   },
   computed: {
     ageString () {
+      if (this.age === '') return 'количество лет не указано'
       if (this.age > 4 & this.age < 21 || this.age % 10 === 0) return 'лет'
       else if (this.age % 10 === 1) return 'год'
       else if (this.age % 10 > 0 && this.age % 10 < 5) return 'года'
-      else return 'лет'
+      else return ''
     }
   }
 }

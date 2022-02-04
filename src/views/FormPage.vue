@@ -49,9 +49,7 @@ export default {
       needToDelete: 'children/needToDelete',
       setChildName: 'children/setChildName',
       setChildAge: 'children/setChildAge',
-      createFamily: 'createFamily',
-      clearChildArea: 'children/clearChildrenArea',
-      clearParentArea: 'parent/clearParentArea'
+      createFamily: 'createFamily'
     })
   },
   computed: {

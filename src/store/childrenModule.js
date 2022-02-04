@@ -33,13 +33,9 @@ export const childrenModule = {
     },
     needToDelete (state, target) {
       state.children = state.children.filter((c) => c !== target)
-      // state.children.splice(index, 1)
     },
     getName (state, name) {
       state.parent.parentName = name
-    },
-    clearChildrenArea (state) {
-      state.children.splice(0, state.children.length)
     }
   },
   namespaced: true
