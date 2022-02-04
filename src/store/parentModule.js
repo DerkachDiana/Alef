@@ -13,6 +13,10 @@ export const parentModule = {
     },
     setParentAge (state, parentAge) {
       state.parent.parentAge = parentAge
+    },
+    clearParentArea (state) {
+      state.parent.parentName = ''
+      state.parent.parentAge = ''
     }
   },
   namespaced: true

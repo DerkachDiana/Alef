@@ -21,7 +21,7 @@
               @newAge="setChildAge({ ind: index, myAge: $event })"
             />
           </div>
-          <SaveButton text="Сохранить" @click="this.createFamily( { parentName: parentName, parentAge: parentAge, children: children })"></SaveButton>
+          <SaveButton text="Сохранить" @click="handleClick"></SaveButton>
         </div>
       </div>
     </div>
@@ -49,8 +49,13 @@ export default {
       needToDelete: 'children/needToDelete',
       setChildName: 'children/setChildName',
       setChildAge: 'children/setChildAge',
-      createFamily: 'createFamily'
-    })
+      createFamily: 'createFamily',
+      clearParentsArea: 'parent/clearParentArea'
+    }),
+    handleClick () {
+      this.createFamily({ parentName: this.parentName, parentAge: this.parentAge, children: this.children })
+      this.clearParentsArea()
+    }
   },
   computed: {
     ...mapState({

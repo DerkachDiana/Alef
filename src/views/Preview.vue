@@ -25,12 +25,6 @@ import { mapState } from 'vuex'
 export default {
   name: 'Preview',
   components: { ListComponent, TitleComponent },
-  data () {
-    return {
-      age: 40,
-      personName: 'Степан'
-    }
-  },
   computed: {
     ...mapState({
       families: state => state.preview.families
