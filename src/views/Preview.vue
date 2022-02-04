@@ -1,14 +1,16 @@
 <template>
   <div class="container">
     <div class="container__constraint">
-      <div class="container__personal-info">
-        <TitleComponent title="Персональные данные"/>
-        <ListComponent :person-name="personName" :age="age" bg-color="white" my-padding="unset"></ListComponent>
-      </div>
-      <div class="container__child">
-        <TitleComponent title="Дети"/>
-        <div v-for="(child, index) in children" :key="index">
-          <ListComponent :person-name="child.name" :age="child.age" bg-color="#F1F1F1" my-padding="10px 20px"/>
+      <div  v-for="(family, index) in families" :key="index">
+        <div class="personal-info">
+          <TitleComponent title="Персональные данные"/>
+          <ListComponent :person-name="family.parentName" :age="family.parentAge" bg-color="white" my-padding="unset"></ListComponent>
+        </div>
+        <div v-if="family.children.length!==0" class="container__child">
+          <TitleComponent title="Дети"/>
+          <div v-for="(child) in families[index].children" :key="child.name">
+            <ListComponent :person-name="child.childName" :age="child.childAge" bg-color="#F1F1F1" my-padding="10px 20px"/>
+          </div>
         </div>
       </div>
     </div>
@@ -18,6 +20,8 @@
 <script>
 import TitleComponent from '../components/TitleComponent'
 import ListComponent from '../components/ListComponent'
+import { mapState } from 'vuex'
+
 export default {
   name: 'Preview',
   components: { ListComponent, TitleComponent },
@@ -26,6 +30,11 @@ export default {
       age: 40,
       personName: 'Степан'
     }
+  },
+  computed: {
+    ...mapState({
+      families: state => state.preview.families
+    })
   }
 }
 </script>
@@ -50,5 +59,6 @@ export default {
     display:flex;
     flex-direction: column;
     align-items: start;
+    margin-top: 10px;
   }
 </style>

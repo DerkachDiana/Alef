@@ -36,9 +36,12 @@ export default {
   gap: 24px;
   flex: 1;
   color: rgba(17, 17, 17, 0.48);
-  font-family: Montserrat;
+  font-family: Montserrat, serif;
   font-size: 14px;
   font-weight: 400;
+}
+.header__nav__text {
+  text-decoration: none;
 }
 .header__third-block {
   display: flex;

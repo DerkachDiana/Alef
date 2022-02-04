@@ -8,15 +8,20 @@
       </div>
       <div class="content-constraint__childCard">
         <div class="content-constraint__childCard__row">
-          <TitleComponent title="Дети (макс. 5)"/>
-          <AddButtonComponent @click="addChild" text="Добавить ребенка"/>
+          <TitleComponent v-if="children.length!==0" title="Дети (макс. 5)"/>
+          <AddButtonComponent v-if="children.length<=4" @click="addChild" text="Добавить ребенка"/>
         </div>
         <div class="content-constraint__childCard__childCard-SaveButton">
           <div v-for="(child, index) in children" :key="index" >
-            {{index}}
-            <ChildCard @deleteCard="needToDelete" @newName="setChildName(index, index)"/>
+            <ChildCard
+              :child-age="child.childAge"
+              :child-name="child.childName"
+              @deleteCard="needToDelete(child)"
+              @newName="setChildName({ i: index, myName: $event })"
+              @newAge="setChildAge({ ind: index, myAge: $event })"
+            />
           </div>
-          <SaveButton text="Сохранить" @click="createFamily"></SaveButton>
+          <SaveButton text="Сохранить" @click="this.createFamily( { parentName: parentName, parentAge: parentAge, children: children })"></SaveButton>
         </div>
       </div>
     </div>
@@ -33,7 +38,7 @@ export default {
   components: { ChildCard, SaveButton, AddButtonComponent, InputComponent, TitleComponent },
   data () {
     return {
-      nName: 'ss'
+      nName: ''
     }
   },
   methods: {
@@ -42,16 +47,18 @@ export default {
       setParentAge: 'parent/setParentAge',
       addChild: 'children/addChildr',
       needToDelete: 'children/needToDelete',
-      createFamily: 'preview/createFamily',
-      setChildName: 'children/setChildName'
-    }),
-    saveName (newname) {
-      this.nName = newname
-    }
+      setChildName: 'children/setChildName',
+      setChildAge: 'children/setChildAge',
+      createFamily: 'createFamily',
+      clearChildArea: 'children/clearChildrenArea',
+      clearParentArea: 'parent/clearParentArea'
+    })
   },
   computed: {
     ...mapState({
-      children: state => state.children.children
+      children: state => state.children.children,
+      parentName: state => state.parent.parent.parentName,
+      parentAge: state => state.parent.parent.parentAge
     })
   },
   watch: {

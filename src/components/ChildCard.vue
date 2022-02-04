@@ -3,8 +3,8 @@
     <div class="container__title-button">
       <div class="container__form">
         <div class="container__form__row">
-          <InputComponent input-type="text" input-value="Имя" width="238px" @getText="changeName"/>
-          <InputComponent input-type="text" input-value="Возраст" width="238px" @getText="changeName"/>
+          <InputComponent input-type="text" input-value="Имя" width="238px" v-model="name" @getText="changeName"/>
+          <InputComponent input-type="text" input-value="Возраст" width="238px" v-model="age" @getText="changeAge"/>
           <DeleteButtonComponent @click="deleteChild"/>
         </div>
       </div>
@@ -15,38 +15,49 @@
 <script>
 import InputComponent from './InputComponent'
 import DeleteButtonComponent from './DeleteButtonComponent'
-import { mapMutations } from 'vuex'
+
 export default {
   name: 'ChildCard',
-  emits: ['deleteCard', 'newName'],
-  props: {
-    index: Number
-  },
+  emits: ['deleteCard', 'newName', 'newAge'],
   components: { DeleteButtonComponent, InputComponent },
+  props: {
+    childName: String,
+    childAge: String
+  },
+  computed: {
+    name: {
+      get () { return this.childName },
+      set (val) { this.$emit('newName', val) }
+    },
+    age: {
+      get () { return this.childAge },
+      set (val) { this.$emit('newAge', val) }
+    }
+  },
   methods: {
     deleteChild () {
       this.$emit('deleteCard', true)
     },
-    ...mapMutations({
-      setChildName: 'children/setChildName',
-      setChildAge: 'children/setChildAge',
-      inputText: 'children/textMutation'
-    }),
     changeName (val) {
       this.getName = val
+    },
+    changeAge (age) {
+      this.getAge = age
     }
   },
   data () {
     return {
-      childName: '',
-      childAge: 0,
       textFromInput: '',
-      getName: ''
+      getName: '',
+      getAge: 0
     }
   },
   watch: {
     getName (newVal) {
-      this.$emit('newName', this.getName)
+      this.$emit('newName', newVal)
+    },
+    getAge (newVal) {
+      this.$emit('newAge', newVal)
     }
   }
 }

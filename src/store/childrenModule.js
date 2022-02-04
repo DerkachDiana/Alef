@@ -1,13 +1,7 @@
 export const childrenModule = {
   state: () => ({
-    child: {
-      childName: '',
-      childAge: 0
-    },
     children: [],
-    childNames: [],
-    childAges: [],
-    id: 0
+    availabilityAddButton: true
   }),
   getters: {
 
@@ -16,27 +10,36 @@ export const childrenModule = {
     textMutation (state, newText) {
       state.text = newText
     },
-    setChildAge (state, childAge) {
+    setChildAge (state, { ind, myAge }) {
+      try {
+        state.children[ind].childAge = myAge
+      } catch (e) {
+        console.log('there is a undefined problem with age')
+      }
     },
-    setChildName (state, i, myName) {
-      state.children[i].childName = myName
-    },
-    setChildAg (state, childAge) {
+    setChildName (state, { i, myName }) {
+      try {
+        state.children[i].childName = myName
+      } catch (e) {
+        console.log('there is a undefined problem with name')
+      }
     },
     addChildr (state) {
       const child = {
-        childInput: state.id,
         childName: '',
-        childAge: 0
+        childAge: ''
       }
       if (state.children.length < 5) state.children.push(child)
-      state.id += 1
     },
-    needToDelete (state, index) {
-      state.children.splice(index, 1)
+    needToDelete (state, target) {
+      state.children = state.children.filter((c) => c !== target)
+      // state.children.splice(index, 1)
     },
     getName (state, name) {
       state.parent.parentName = name
+    },
+    clearChildrenArea (state) {
+      state.children.splice(0, state.children.length)
     }
   },
   namespaced: true

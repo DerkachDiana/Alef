@@ -1,38 +1,31 @@
 <template>
   <div class="base-input">
     <div class="textAboveTheInput">{{inputValue}}</div>
-    <input :type="inputType" class="my-input-text" :style="{'width': width}" v-model="textFromInput">
+    <input :type="inputType" class="my-input-text" :style="{'width': width}" v-model="text">
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 
 export default {
   name: 'InputComponent',
-  emits: ['getText'],
+  emits: ['getText', 'update:modelValue'],
   props: {
     width: String,
+    modelValue: String,
     inputValue: String,
     inputType: {
       type: String,
       default: 'text'
     }
   },
-  data () {
-    return {
-      textFromInput: ''
-    }
-  },
-  methods: {
-    ...mapMutations({
-    })
-  },
   computed: {
-  },
-  watch: {
-    textFromInput (newValue) {
-      this.$emit('getText', newValue)
+    text: {
+      get () { return this.modelValue },
+      set (val) {
+        this.$emit('update:modelValue', val)
+        this.$emit('getText', val)
+      }
     }
   }
 }
